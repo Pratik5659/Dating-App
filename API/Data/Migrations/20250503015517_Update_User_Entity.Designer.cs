@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace API.Data.Migrations
 {
-    [DbContext(typeof(DataContext))]
-    [Migration("20250206170939_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(AppDbContext))]
+    [Migration("20250503015517_Update_User_Entity")]
+    partial class Update_User_Entity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,14 @@ namespace API.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<byte[]>("PassHash")
+                        .IsRequired()
+                        .HasColumnType("BLOB");
+
+                    b.Property<byte[]>("PassSalt")
+                        .IsRequired()
+                        .HasColumnType("BLOB");
 
                     b.Property<string>("UserName")
                         .IsRequired()
